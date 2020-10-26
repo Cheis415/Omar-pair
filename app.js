@@ -41,5 +41,22 @@ async function getFavNumFacts(favNum){
 
 
 
+// (4) 
+
+
+const BASE_DECK_URL = "https://deckofcardsapi.com/api/deck/"
+
+
+
+async function cardFromDeck() {
+
+    let response = await axios.get(`${BASE_DECK_URL}new/draw/?count=1`);
+
+    console.log(response.data.cards[0].value, response.data.cards[0].suit);
+}
+
+
+
+
 
 
