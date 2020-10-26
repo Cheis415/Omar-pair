@@ -1,9 +1,13 @@
 const BASE_URL = "http://numbersapi.com/" 
 
-async function get_fav(num) {
-    let fav = await axios.get(`${BASE_URL}${num}/trivia?json`)
-    return fav.data.text
+async function get_fav(evt) {
+    evt.preventDefault()
+    let num = $("#num").val()
+    let fav = await axios.get(`${BASE_URL}${num}/trivia`)
+    $("#four_facts").append(`<p>${fav.data}</p>` )
+    console.log(fav)
 }
+$("#fav_num").on("submit", get_fav)
 
 // (2) (a)
 
