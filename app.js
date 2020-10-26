@@ -27,6 +27,18 @@ async function getDataOnArray(num1, num2){
 
 }
 
+async function getFavNumFacts(favNum){
+    
+    let fav1 = await axios.get(`${BASE_URL}${favNum}/trivia?json`);
+    let fav2 = await axios.get(`${BASE_URL}${favNum}/trivia?json`);
+    let fav3 = await axios.get(`${BASE_URL}${favNum}/trivia?json`);
+    let fav4 = await axios.get(`${BASE_URL}${favNum}/trivia?json`);
+         
+    let results = [fav1.data.text, fav2.data.text, fav3.data.text, fav4.data.text];
+
+    return results;
+}
+
 
 
 
