@@ -59,8 +59,53 @@ async function cardFromDeck() {
     console.log(response.data.cards[0].value, response.data.cards[0].suit);
 }
 
+// (5)
+
+async function twoCardsFromDeck() {
+
+    let response = await axios.get(`${BASE_DECK_URL}new/draw/?count=1`);
+
+    let id = response.data.deck_id;
+
+    let second_response = await axios.get(`${BASE_DECK_URL}${id}/draw/?count=1`);
+
+    console.log(response.data.cards[0].value, response.data.cards[0].suit);
+    console.log(second_response.data.cards[0].value, second_response.data.cards[0].suit);
+}
+
+// (6)
+
+async function createNewDeck() {
+
+    let response = await axios.get(`${BASE_DECK_URL}new/`);
+
+    let id = response.data.deck_id;
+
+    return id;
+}
+
+const id = createNewDeck();
+
+
+async function newCard(){
+
+    let response = await axios.get(`${BASE_DECK_URL}${id}/draw/?count=1`);
+    
+    return console.log(
+        response.data.cards[0].value, 
+        response.data.cards[0].suit,
+        response.data.cards[0].image
+        );
+
+}
 
 
 
+
+$("#new_card").on("submit", drawNewCard);
+
+window.onload = (Event) => {
+    createNewDeck();
+}
 
 
