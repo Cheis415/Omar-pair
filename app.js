@@ -84,28 +84,25 @@ async function createNewDeck() {
     return id;
 }
 
-const id = createNewDeck();
 
 
-async function newCard(){
-
-    let response = await axios.get(`${BASE_DECK_URL}${id}/draw/?count=1`);
+async function newCard(evt){
+    evt.preventDefault()
     
-    return console.log(
-        response.data.cards[0].value, 
-        response.data.cards[0].suit,
-        response.data.cards[0].image
-        );
-
+    let shuffled = await axios.get(`${BASE_DECK_URL}yddl505ulacf/shuffle/`)
+    let response = await axios.get(`${BASE_DECK_URL}yddl505ulacf/draw/?count=1`);
+    let card = response.data.cards[0].image;
+    console.log(card)
+    $("#card").append(`<img src= ${card}>`)
+    
+     
 }
 
 
 
 
-$("#new_card").on("submit", drawNewCard);
+$("#new_card").on("submit", newCard);
 
-window.onload = (Event) => {
-    createNewDeck();
-}
+
 
 
